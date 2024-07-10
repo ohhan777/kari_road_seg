@@ -53,7 +53,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--input', '-i', type=str, required=True, help='Input image path')
     parser.add_argument('--output', '-o', type=str, default='./outputs', help='Output directory')
-    parser.add_argument('--weight', '-w', default='weights/ohhan_best.pth', help='Weight file path')
+    parser.add_argument('--weight', '-w', default='weights/ohhan_adam_ce_best.pth', help='Weight file path')
     opt = parser.parse_args()
 
     predict(opt)
