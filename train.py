@@ -17,8 +17,8 @@ def train(opt):
     name = opt.name
 
     # wandb settings
-    wandb.init(id=opt.name, resume='allow', project=Path(__file__).parent.stem)
-    wandb.config.update(opt)
+    # wandb.init(id=opt.name, resume='allow', project=Path(__file__).parent.stem)
+    # wandb.config.update(opt)
 
     # Train dataset
     train_dataset = KariRoadDataset('./data/kari-road', train=True)
@@ -94,7 +94,7 @@ def train(opt):
         state = {'model': model.state_dict(), 'epoch': epoch, 'best_accuracy': best_accuracy}
         torch.save(state, weight_file)
         # wandb logging
-        wandb.log({'train_loss': epoch_loss, 'val_loss': val_epoch_loss, 'val_mean_iou': val_epoch_mean_iou, 'val_accuracy': val_epoch_pix_accuracy})
+        # wandb.log({'train_loss': epoch_loss, 'val_loss': val_epoch_loss, 'val_mean_iou': val_epoch_mean_iou, 'val_accuracy': val_epoch_pix_accuracy})
         
 def train_one_epoch(train_dataloader, model, optimizer, device):
     model.train()
@@ -138,8 +138,8 @@ def val_one_epoch(val_dataloader, model, confusion_matrix, device):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--epochs', type=int, default=250, help='target epochs')
-    parser.add_argument('--batch-size', type=int, default=128, help='batch size')
-    parser.add_argument('--name', default='ohhan_rgb_base', help='name for the run')
+    parser.add_argument('--batch-size', type=int, default=10, help='batch size')
+    parser.add_argument('--name', default='ohhan_adam_ce', help='name for the run')
 
     opt = parser.parse_args()
 
